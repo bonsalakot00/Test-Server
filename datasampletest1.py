@@ -1,56 +1,22 @@
 import csv #csv file module parsing file/data
-import io #I/O reader
-import urllib.request #module for opening URLS
+import numpy as np
+import pandas as pd
+import requests
 
-url = "https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2012.csv" #URL temporary storage of data
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(io.TextIOWrapper(webpage))  #TextIOWrapper; buffered text interface to a buffered raw stream
 
-for row in datareader:  #loop object memory to display data
-    print(row)  #print object memory
+#upload csv
+df1 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2012.csv')
+df2 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2013.csv')
+df3 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2014.csv')
+df4 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2015.csv')
+df5 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2016.csv')
+df6 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2017.csv')
 
-url = "https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2013.csv"
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(io.TextIOWrapper(webpage))
+frames = [df1, df2, df3, df4, df5, df6]
+result = pd.concat(frames, axis=0, ignore_index=True, join='inner')
+result.index += 1
+results = result.reset_index(drop = False)
+print(results)
 
-next(datareader)    #skip first line of data (which contains field names)
 
-for row in datareader:
-    print(row)
-
-url = "https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2014.csv"
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(io.TextIOWrapper(webpage))
-
-next(datareader)
-
-for row in datareader:
-    print(row)
-
-url = "https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2015.csv"
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(io.TextIOWrapper(webpage))
-
-next(datareader)
-
-for row in datareader:
-    print(row)
-
-url = "https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2016.csv"
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(io.TextIOWrapper(webpage))
-
-next(datareader)
-
-for row in datareader:
-    print(row)
-
-url = "https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2017.csv"
-webpage = urllib.request.urlopen(url)
-datareader = csv.reader(io.TextIOWrapper(webpage))
-
-next(datareader)
-
-for row in datareader:
-    print(row)
 
