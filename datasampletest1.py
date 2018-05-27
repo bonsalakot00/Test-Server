@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import requests
 
-
 #upload csv
 df1 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2012.csv')
 df2 = pd.read_csv('https://raw.githubusercontent.com/bonsalakot00/Test-Server/master/Data_2013.csv')
@@ -17,6 +16,3 @@ result = pd.concat(frames, axis=0, ignore_index=True, join='inner')
 result.index += 1
 results = result.reset_index(drop = False)
 print(results)
-
-
-
